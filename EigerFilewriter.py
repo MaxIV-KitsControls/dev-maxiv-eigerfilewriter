@@ -407,7 +407,7 @@ class EigerFilewriterClass(PyTango.DeviceClass):
             PyTango.SCALAR,
             PyTango.READ],
             {
-                'description': "The filewriter's status. The status can be one of "disabled",\n"ready", "acquire", and "error".",
+                'description': "The filewriter`s status. The status can be one of disabled,\nready, acquire, and error.",
             } ],
         'BufferFree':
             [[PyTango.DevLong,
