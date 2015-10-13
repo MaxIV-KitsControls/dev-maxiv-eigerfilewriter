@@ -90,9 +90,9 @@ class EigerFilewriter (PyTango.Device_4Impl):
         self.attr_ImageNbStart_read = 0
         self.attr_FilenamePattern_read = ''
         self.attr_CompressionEnabled_read = 0
-        self.attr_FilewriterError_read = ''
         self.attr_FilewriterState_read = ''
         self.attr_BufferFree_read = 0
+        self.attr_FilewriterError_read = ['']
         #----- PROTECTED REGION ID(EigerFilewriter.init_device) ENABLED START -----#
 
         connected = 0
@@ -245,18 +245,10 @@ class EigerFilewriter (PyTango.Device_4Impl):
 
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.CompressionEnabled_write
         
-    def read_FilewriterError(self, attr):
-        self.debug_stream("In read_FilewriterError()")
-        #----- PROTECTED REGION ID(EigerFilewriter.FilewriterError_read) ENABLED START -----#
-        self.attr_FilewriterError_read = self.filewriter.error
-        attr.set_value(self.attr_FilewriterError_read)
-        
-        #----- PROTECTED REGION END -----#	//	EigerFilewriter.FilewriterError_read
-        
     def read_FilewriterState(self, attr):
         self.debug_stream("In read_FilewriterState()")
         #----- PROTECTED REGION ID(EigerFilewriter.FilewriterState_read) ENABLED START -----#
-        self.attr_FilewriterState_read = self.filewriter.state
+        self.attr_FilewriterState_read = self.filewriter.status
 
         attr.set_value(self.attr_FilewriterState_read)
         
@@ -270,6 +262,14 @@ class EigerFilewriter (PyTango.Device_4Impl):
         attr.set_value(self.attr_BufferFree_read)
         
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.BufferFree_read
+        
+    def read_FilewriterError(self, attr):
+        self.debug_stream("In read_FilewriterError()")
+        #----- PROTECTED REGION ID(EigerFilewriter.FilewriterError_read) ENABLED START -----#
+        self.attr_FilewriterError_read = self.filewriter.error
+        attr.set_value(self.attr_FilewriterError_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.FilewriterError_read
         
     
     
@@ -411,13 +411,6 @@ class EigerFilewriterClass(PyTango.DeviceClass):
             {
                 'description': "True if the LZ4 data compression is enabled, False otherwise.",
             } ],
-        'FilewriterError':
-            [[PyTango.DevString,
-            PyTango.SCALAR,
-            PyTango.READ],
-            {
-                'description': "list of status parameters causing error state.",
-            } ],
         'FilewriterState':
             [[PyTango.DevString,
             PyTango.SCALAR,
@@ -432,6 +425,13 @@ class EigerFilewriterClass(PyTango.DeviceClass):
             {
                 'unit': "kB",
                 'description': "Remaining buffer space in KB",
+            } ],
+        'FilewriterError':
+            [[PyTango.DevString,
+            PyTango.SPECTRUM,
+            PyTango.READ, 10],
+            {
+                'description': "list of status parameters causing error state.",
             } ],
         }
 

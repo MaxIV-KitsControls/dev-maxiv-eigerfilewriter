@@ -4,52 +4,6 @@
 <title> EigerFilewriter Tango Class User&lsquo;s Guide </title>
 </head>
 <body text="Black" bgcolor="White" link="Blue" vlink="Purple" alink="Red">
-<table border="0" width="100%" cellspacing="0" cellpadding="0" >
-        <td align="center">
-            <a href="http://www.esrf.fr/" target=new>
-                <img src="http://www.esrf.fr/gifs/logo/80.gif" border=0 height="35"></a>
-        </td>
-        <td align="center">
-            <a href="http://www.elettra.trieste.it/" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/elettra_logo.gif" border=0 height="35"></a>
-        </td>
-        <td align="center">
-            <a href="http://www.synchrotron-soleil.fr/" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/soleil_logo.gif" border=0 height="35"></a>
-        </td>
-        <td align="center">
-            <a href="http://www.cells.es/" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/alba.jpg" border=0 height="27"></a>
-        </td>
-        <td align="center">
-            <a href="http://www.tango-controls.org/" target="_top">
-               <img src="http://www.esrf.fr/computing/cs/tango/tango_logo.jpg" alt=""  height="40" /></a>
-        </td>
-        <td align="center">
-            <a href="http://www.desy.de/html/home/index_eng.html" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/desy.gif" border=0 height="26"></a>
-        </td>
-        <td align="center">
-            <a href="http://www.maxlab.lu.se/maxlab/max4/index.html" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/maxlab.gif" border=0 height="21"></a>
-        </td>
-        <td align="center">
-            <a href="http://www.frm2.tum.de/en/index.html" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/frm-2.jpg" border=0 height="24"></a>
-        </td>
-         <td align="center">
-            <a href="http://www.synchrotron.uj.edu.pl/" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/solaris_logo.gif" border=0 height="21"></a>
-        </td>
-         <td align="center">
-            <a href="http://www.anka.kit.edu/english/28.php" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/anka_blau_rot.png" border=0 height="25"></a>
-        </td>
-         <td align="center">
-            <a href="http://www.eli-hu.hu/" target=new>
-                <img src="http://www.esrf.fr/computing/cs/tango/eli-alps.jpg" border=0 height="32"></a>
-        </td>
-   </table>
 <hr>
 <br>
 <center><h2><u><b> EigerFilewriter Tango Python Class </b></u></h2></center>	<br><br>
@@ -73,9 +27,9 @@
 				<li> <a href="FullDocument.html#attrImageNbStart"> ImageNbStart </a>
 				<li> <a href="FullDocument.html#attrFilenamePattern"> FilenamePattern </a>
 				<li> <a href="FullDocument.html#attrCompressionEnabled"> CompressionEnabled </a>
-				<li> <a href="FullDocument.html#attrFilewriterError"> FilewriterError </a>
 				<li> <a href="FullDocument.html#attrFilewriterState"> FilewriterState </a>
 				<li> <a href="FullDocument.html#attrBufferFree"> BufferFree </a>
+				<li> <a href="FullDocument.html#attrFilewriterError"> FilewriterError </a>
 			</ul>
 			<li> <a href="FullDocument.html#states">       States       </a>
 		</ul>
@@ -477,16 +431,6 @@
 		<td> True if the LZ4 data compression is enabled, False otherwise. </td>
 	</tr>
 	<tr>
-		<td> <a href="AttrFilewriterError.html"> FilewriterError </a> </td>
-		<td> false </td>
-		<td> false </td>
-		<td> Scalar </td>
-		<td> READ </td>
-		<td> Tango::DEV_STRING </td>
-		<td> OPERATOR </td>
-		<td> list of status parameters causing error state. </td>
-	</tr>
-	<tr>
 		<td> <a href="AttrFilewriterState.html"> FilewriterState </a> </td>
 		<td> false </td>
 		<td> false </td>
@@ -506,6 +450,16 @@
 		<td> Tango::DEV_LONG </td>
 		<td> OPERATOR </td>
 		<td> Remaining buffer space in KB </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrFilewriterError.html"> FilewriterError </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Spectrum </td>
+		<td> READ </td>
+		<td> Tango::DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> list of status parameters causing error state. </td>
 	</tr>
 </table>
 <br><br>
@@ -1517,169 +1471,6 @@
 </table>
 <br><br>
 <hr>
-<a name="attrFilewriterError"> </a>
-<br><br><br>
-<font size="+1"><u><b> Attribute FilewriterError : </b></u></font>
-<ul>
-	list of status parameters causing error state.
-</ul>
-<br><br><br>
-<Table Border=0 Cellpadding=0 CELLSPACING=20>
-	<TR>
-		<TD ALIGN="left" VALIGN=top>
-			<Table Border=2 Cellpadding=3 CELLSPACING=0>
-				<tr bgcolor="#CCCCFF" class="TableHeadingColor">
-				<td colspan=0> <font size=+1> <center><b> Attribute Definition </b></font></center></td>
-				</tr>
-				<tr>
-					<td> Attribute Type </td>
-					<td> Scalar </td>
-				</tr>
-				<tr>
-					<td> R/W Type </td>
-					<td> READ </td>
-				</tr>
-				<tr>
-					<td> Data Type </td>
-					<td> Tango::DEV_STRING </td>
-				</tr>
-				<tr>
-					<td> Display Level </td>
-					<td> OPERATOR </td>
-				</tr>
-				<tr>
-					<td> Inherited </td>
-					<td> false </td>
-				</tr>
-				<tr>
-					<td> Abstract </td>
-					<td> false </td>
-				</tr>
-				<tr>
-					<td> Polling Period </td>
-					<td> Not polled </td>
-				</tr>
-				<tr>
-					<td> Memorized </td>
-					<td> Not set </td>
-				</tr>
-			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
-				<tr>
-					<td> Read allowed for </td>
-					<td> All states </td>
-				</tr>
-			</table>
-		</td>
-		<TD ALIGN="Center" VALIGN=top>
-			<Table Border=2 Cellpadding=3 CELLSPACING=0>
-				<tr bgcolor="#CCCCFF" class="TableHeadingColor">
-				<td colspan=0> <font size=+1> <center><b> Attribute Properties </b></font></center></td>
-				</tr>
-				<tr>
-					<td> label </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> unit </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> standard unit </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> display unit </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> format </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> max_value </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> min_value </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> max_alarm </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> min_alarm </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> max_warning </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> min_warning </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> delta_time </td>
-					<td>  </td>
-				</tr>
-				<tr>
-					<td> delta_val </td>
-					<td>  </td>
-				</tr>
-			</table>
-		</td>
-		<TD ALIGN="Right" VALIGN=top>
-			<Table Border=2 Cellpadding=3 CELLSPACING=0>
-				<tr bgcolor="#CCCCFF" class="TableHeadingColor">
-				<td colspan=0> <font size=+1> <center><b> Attribute Event Criteria </b></font></center></td>
-				</tr>
-				<tr>
-					<td> Periodic </td>
-					<td> Not set </td>
-				</tr>
-				<tr>
-					<td> Relative Change </td>
-					<td> Not set </td>
-				</tr>
-				<tr>
-					<td> Absolute Change </td>
-					<td> Not set </td>
-				</tr>
-			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
-				<tr>
-					<td> Archive Periodic </td>
-					<td> Not set </td>
-				</tr>
-				<tr>
-					<td> Archive Relative Change </td>
-					<td> Not set </td>
-				</tr>
-				<tr>
-					<td> Archive Absolute Change </td>
-					<td> Not set </td>
-				</tr>
-			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
-				<tr>
-					<td> Push Change event by user code </td>
-					<td> false </td>
-				</tr>
-			<Tr BGCOLOR="#CCCCFF"><Td> </Td><Td> </Td></Tr>
-				<tr>
-					<td> Push Archive event by user code </td>
-					<td> false </td>
-				</tr>
-			<Tr BGCOLOR="#CCCCFF"><Td> </Td><Td> </Td></Tr>
-				<tr>
-					<td> Push DataReady event by user code </td>
-					<td> false </td>
-				</tr>
-			</table>
-		</td>
-	</TR>
-</table>
-<br><br>
-<hr>
 <a name="attrFilewriterState"> </a>
 <br><br><br>
 <font size="+1"><u><b> Attribute FilewriterState : </b></u></font>
@@ -1909,6 +1700,169 @@
 				<tr>
 					<td> unit </td>
 					<td> kB </td>
+				</tr>
+				<tr>
+					<td> standard unit </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> display unit </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> format </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> max_value </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> min_value </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> max_alarm </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> min_alarm </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> max_warning </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> min_warning </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> delta_time </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> delta_val </td>
+					<td>  </td>
+				</tr>
+			</table>
+		</td>
+		<TD ALIGN="Right" VALIGN=top>
+			<Table Border=2 Cellpadding=3 CELLSPACING=0>
+				<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+				<td colspan=0> <font size=+1> <center><b> Attribute Event Criteria </b></font></center></td>
+				</tr>
+				<tr>
+					<td> Periodic </td>
+					<td> Not set </td>
+				</tr>
+				<tr>
+					<td> Relative Change </td>
+					<td> Not set </td>
+				</tr>
+				<tr>
+					<td> Absolute Change </td>
+					<td> Not set </td>
+				</tr>
+			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
+				<tr>
+					<td> Archive Periodic </td>
+					<td> Not set </td>
+				</tr>
+				<tr>
+					<td> Archive Relative Change </td>
+					<td> Not set </td>
+				</tr>
+				<tr>
+					<td> Archive Absolute Change </td>
+					<td> Not set </td>
+				</tr>
+			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
+				<tr>
+					<td> Push Change event by user code </td>
+					<td> false </td>
+				</tr>
+			<Tr BGCOLOR="#CCCCFF"><Td> </Td><Td> </Td></Tr>
+				<tr>
+					<td> Push Archive event by user code </td>
+					<td> false </td>
+				</tr>
+			<Tr BGCOLOR="#CCCCFF"><Td> </Td><Td> </Td></Tr>
+				<tr>
+					<td> Push DataReady event by user code </td>
+					<td> false </td>
+				</tr>
+			</table>
+		</td>
+	</TR>
+</table>
+<br><br>
+<hr>
+<a name="attrFilewriterError"> </a>
+<br><br><br>
+<font size="+1"><u><b> Attribute FilewriterError : </b></u></font>
+<ul>
+	list of status parameters causing error state.
+</ul>
+<br><br><br>
+<Table Border=0 Cellpadding=0 CELLSPACING=20>
+	<TR>
+		<TD ALIGN="left" VALIGN=top>
+			<Table Border=2 Cellpadding=3 CELLSPACING=0>
+				<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+				<td colspan=0> <font size=+1> <center><b> Attribute Definition </b></font></center></td>
+				</tr>
+				<tr>
+					<td> Attribute Type </td>
+					<td> Spectrum  ( 10 ) </td>
+				</tr>
+				<tr>
+					<td> R/W Type </td>
+					<td> READ </td>
+				</tr>
+				<tr>
+					<td> Data Type </td>
+					<td> Tango::DEV_STRING </td>
+				</tr>
+				<tr>
+					<td> Display Level </td>
+					<td> OPERATOR </td>
+				</tr>
+				<tr>
+					<td> Inherited </td>
+					<td> false </td>
+				</tr>
+				<tr>
+					<td> Abstract </td>
+					<td> false </td>
+				</tr>
+				<tr>
+					<td> Polling Period </td>
+					<td> Not polled </td>
+				</tr>
+				<tr>
+					<td> Memorized </td>
+					<td> Not set </td>
+				</tr>
+			<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td></Tr>
+				<tr>
+					<td> Read allowed for </td>
+					<td> All states </td>
+				</tr>
+			</table>
+		</td>
+		<TD ALIGN="Center" VALIGN=top>
+			<Table Border=2 Cellpadding=3 CELLSPACING=0>
+				<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+				<td colspan=0> <font size=+1> <center><b> Attribute Properties </b></font></center></td>
+				</tr>
+				<tr>
+					<td> label </td>
+					<td>  </td>
+				</tr>
+				<tr>
+					<td> unit </td>
+					<td>  </td>
 				</tr>
 				<tr>
 					<td> standard unit </td>
