@@ -95,13 +95,21 @@ class EigerFilewriter (PyTango.Device_4Impl):
         self.attr_BufferFree_read = 0
         #----- PROTECTED REGION ID(EigerFilewriter.init_device) ENABLED START -----#
 
-        self.dev = PyTango.DeviceProxy(self.EigerDevice)
-        host = self.dev.get_property(['Host'])
-        port_nb = self.dev.get_property(['PortNb'])
-        api_version = self.dev.get_property(['APIVersion'])
-        self.filewriter = EigerFileWriter(host, port_nb, api_version)
+        connected = 0
+        try:
+            self.dev = PyTango.DeviceProxy(self.EigerDevice)
+            connected = 1
+        except:
+            self.set_state(PyTango.DevState.FAULT)
+            self.set_status("Not able to create proxy EigerDevice")
 
-        self.set_state(PyTango.DevState.ON)
+        if connected:
+            host = self.dev.get_property(['Host'])
+            port_nb = self.dev.get_property(['PortNb'])
+            api_version = self.dev.get_property(['APIVersion'])
+            self.filewriter = EigerFileWriter(host, port_nb, api_version)
+
+            self.set_state(PyTango.DevState.ON)
         
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.init_device
 
