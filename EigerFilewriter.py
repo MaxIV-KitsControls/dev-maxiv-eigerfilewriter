@@ -358,14 +358,14 @@ class EigerFilewriterClass(PyTango.DeviceClass):
             PyTango.SCALAR,
             PyTango.READ_WRITE],
             {
-                'description': "Operation mode, can be "enabled" or "disabled".",
+                'description': "Operation mode, can be enabled or disabled.",
             } ],
         'TransferMode':
             [[PyTango.DevString,
             PyTango.SCALAR,
             PyTango.READ_WRITE],
             {
-                'description': " Transfer mode. Currently only "http" is supported.",
+                'description': "Transfer mode. Currently only http is supported.",
             } ],
         'ImagesPerFile':
             [[PyTango.DevLong,
