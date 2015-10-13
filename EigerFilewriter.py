@@ -104,9 +104,17 @@ class EigerFilewriter (PyTango.Device_4Impl):
             self.set_status("Not able to create proxy EigerDevice")
 
         if connected:
-            host = self.dev.get_property(['Host'])
-            port_nb = self.dev.get_property(['PortNb'])
-            api_version = self.dev.get_property(['APIVersion'])
+            prop = self.dev.get_property(['Host'])
+            host = prop['Host'][0]              
+            prop = self.dev.get_property(['APIVersion'])
+            api_version = prop['APIVersion'][0]
+            nums = api_version.split(".")
+            if int(nums[1]) > 2:
+                port_nb = -1
+            else:
+                prop = self.dev.get_property(['PortNb'])
+                port_nb = prop['PortNb'][0]  
+                
             self.filewriter = EigerFileWriter(host, port_nb, api_version)
 
             self.set_state(PyTango.DevState.ON)
@@ -181,7 +189,7 @@ class EigerFilewriter (PyTango.Device_4Impl):
     def read_ImageNbStart(self, attr):
         self.debug_stream("In read_ImageNbStart()")
         #----- PROTECTED REGION ID(EigerFilewriter.ImageNbStart_read) ENABLED START -----#
-        self.attr_ImageNbStart_read = self.filewriter.images_nr_start
+        self.attr_ImageNbStart_read = self.filewriter.image_nr_start
 
         attr.set_value(self.attr_ImageNbStart_read)
         
@@ -191,7 +199,7 @@ class EigerFilewriter (PyTango.Device_4Impl):
         self.debug_stream("In write_ImageNbStart()")
         data=attr.get_write_value()
         #----- PROTECTED REGION ID(EigerFilewriter.ImageNbStart_write) ENABLED START -----#
-        self.filewriter.images_nr_start = data
+        self.filewriter.image_nr_start = data
 
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.ImageNbStart_write
         
