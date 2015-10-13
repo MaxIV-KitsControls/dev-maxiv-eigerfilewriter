@@ -84,6 +84,15 @@ class EigerFilewriter (PyTango.Device_4Impl):
     def init_device(self):
         self.debug_stream("In init_device()")
         self.get_device_properties(self.get_device_class())
+        self.attr_Mode_read = ''
+        self.attr_TransferMode_read = ''
+        self.attr_ImagesPerFile_read = 0
+        self.attr_ImageNbStart_read = 0
+        self.attr_FilenamePattern_read = ''
+        self.attr_CompressionEnabled_read = 0
+        self.attr_FilewriterError_read = ''
+        self.attr_FilewriterState_read = ''
+        self.attr_BufferFree_read = 0
         #----- PROTECTED REGION ID(EigerFilewriter.init_device) ENABLED START -----#
 
         self.dev = PyTango.DeviceProxy(self.EigerDevice)
@@ -91,6 +100,8 @@ class EigerFilewriter (PyTango.Device_4Impl):
         port_nb = self.dev.get_property(['PortNb'])
         api_version = self.dev.get_property(['APIVersion'])
         self.filewriter = EigerFileWriter(host, port_nb, api_version)
+
+        self.set_state(PyTango.DevState.ON)
         
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.init_device
 
@@ -104,6 +115,146 @@ class EigerFilewriter (PyTango.Device_4Impl):
     #    EigerFilewriter read/write attribute methods
     #-----------------------------------------------------------------------------
     
+    def read_Mode(self, attr):
+        self.debug_stream("In read_Mode()")
+        #----- PROTECTED REGION ID(EigerFilewriter.Mode_read) ENABLED START -----#
+        self.attr_Mode_read = self.filewriter.mode
+
+        attr.set_value(self.attr_Mode_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.Mode_read
+        
+    def write_Mode(self, attr):
+        self.debug_stream("In write_Mode()")
+        data=attr.get_write_value()
+        #----- PROTECTED REGION ID(EigerFilewriter.Mode_write) ENABLED START -----#
+        
+        self.filewriter.mode = data
+
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.Mode_write
+        
+    def read_TransferMode(self, attr):
+        self.debug_stream("In read_TransferMode()")
+        #----- PROTECTED REGION ID(EigerFilewriter.TransferMode_read) ENABLED START -----#
+
+        self.attr_TransferMode_read = self.filewriter.transfer_mode
+
+        attr.set_value(self.attr_TransferMode_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.TransferMode_read
+        
+    def write_TransferMode(self, attr):
+        self.debug_stream("In write_TransferMode()")
+        data=attr.get_write_value()
+        #----- PROTECTED REGION ID(EigerFilewriter.TransferMode_write) ENABLED START -----#
+        self.filewriter.transfer_mode = data
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.TransferMode_write
+        
+    def read_ImagesPerFile(self, attr):
+        self.debug_stream("In read_ImagesPerFile()")
+        #----- PROTECTED REGION ID(EigerFilewriter.ImagesPerFile_read) ENABLED START -----#
+
+        self.attr_ImagesPerFile_read = self.filewriter.images_per_file
+
+        attr.set_value(self.attr_ImagesPerFile_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.ImagesPerFile_read
+        
+    def write_ImagesPerFile(self, attr):
+        self.debug_stream("In write_ImagesPerFile()")
+        data=attr.get_write_value()
+        #----- PROTECTED REGION ID(EigerFilewriter.ImagesPerFile_write) ENABLED START -----#
+    
+        self.filewriter.images_per_file = data
+    
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.ImagesPerFile_write
+        
+    def read_ImageNbStart(self, attr):
+        self.debug_stream("In read_ImageNbStart()")
+        #----- PROTECTED REGION ID(EigerFilewriter.ImageNbStart_read) ENABLED START -----#
+        self.attr_ImageNbStart_read = self.filewriter.images_nr_start
+
+        attr.set_value(self.attr_ImageNbStart_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.ImageNbStart_read
+        
+    def write_ImageNbStart(self, attr):
+        self.debug_stream("In write_ImageNbStart()")
+        data=attr.get_write_value()
+        #----- PROTECTED REGION ID(EigerFilewriter.ImageNbStart_write) ENABLED START -----#
+        self.filewriter.images_nr_start = data
+
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.ImageNbStart_write
+        
+    def read_FilenamePattern(self, attr):
+        self.debug_stream("In read_FilenamePattern()")
+        #----- PROTECTED REGION ID(EigerFilewriter.FilenamePattern_read) ENABLED START -----#
+        pattern = self.filewriter.filename_pattern
+        self.attr_FilenamePattern_read = pattern.replace("_$id","")
+
+        attr.set_value(self.attr_FilenamePattern_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.FilenamePattern_read
+        
+    def write_FilenamePattern(self, attr):
+        self.debug_stream("In write_FilenamePattern()")
+        data=attr.get_write_value()
+        #----- PROTECTED REGION ID(EigerFilewriter.FilenamePattern_write) ENABLED START -----#
+               
+        data = data + "_$id"
+        self.filewriter.filename_pattern = data
+
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.FilenamePattern_write
+        
+    def read_CompressionEnabled(self, attr):
+        self.debug_stream("In read_CompressionEnabled()")
+        #----- PROTECTED REGION ID(EigerFilewriter.CompressionEnabled_read) ENABLED START -----#
+        if self.filewriter.compression_enabled == True:
+            self.attr_CompressionEnabled_read = 1
+        attr.set_value(self.attr_CompressionEnabled_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.CompressionEnabled_read
+        
+    def write_CompressionEnabled(self, attr):
+        self.debug_stream("In write_CompressionEnabled()")
+        data=attr.get_write_value()
+        #----- PROTECTED REGION ID(EigerFilewriter.CompressionEnabled_write) ENABLED START -----#
+                
+        if data == 0:
+            self.filewriter.compression_enabled = False
+        else:
+            self.filewriter.compression_enabled = True
+
+
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.CompressionEnabled_write
+        
+    def read_FilewriterError(self, attr):
+        self.debug_stream("In read_FilewriterError()")
+        #----- PROTECTED REGION ID(EigerFilewriter.FilewriterError_read) ENABLED START -----#
+        self.attr_FilewriterError_read = self.filewriter.error
+        attr.set_value(self.attr_FilewriterError_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.FilewriterError_read
+        
+    def read_FilewriterState(self, attr):
+        self.debug_stream("In read_FilewriterState()")
+        #----- PROTECTED REGION ID(EigerFilewriter.FilewriterState_read) ENABLED START -----#
+        self.attr_FilewriterState_read = self.filewriter.state
+
+        attr.set_value(self.attr_FilewriterState_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.FilewriterState_read
+        
+    def read_BufferFree(self, attr):
+        self.debug_stream("In read_BufferFree()")
+        #----- PROTECTED REGION ID(EigerFilewriter.BufferFree_read) ENABLED START -----#
+
+        self.attr_BufferFree_read = self.filewriter.buffer_free
+        attr.set_value(self.attr_BufferFree_read)
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.BufferFree_read
+        
     
     
         #----- PROTECTED REGION ID(EigerFilewriter.initialize_dynamic_attributes) ENABLED START -----#
@@ -121,6 +272,30 @@ class EigerFilewriter (PyTango.Device_4Impl):
     #    EigerFilewriter command methods
     #-----------------------------------------------------------------------------
     
+    def Clear(self):
+        """ Drops all data (image data and directories) on the DCU.
+        
+        :param : 
+        :type: PyTango.DevVoid
+        :return: 
+        :rtype: PyTango.DevVoid """
+        self.debug_stream("In Clear()")
+        #----- PROTECTED REGION ID(EigerFilewriter.Clear) ENABLED START -----#
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.Clear
+        
+    def InitializeFilewriter(self):
+        """ Resets the filewriter to its original state.
+        
+        :param : 
+        :type: PyTango.DevVoid
+        :return: 
+        :rtype: PyTango.DevVoid """
+        self.debug_stream("In InitializeFilewriter()")
+        #----- PROTECTED REGION ID(EigerFilewriter.InitializeFilewriter) ENABLED START -----#
+        
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.InitializeFilewriter
+        
 
     #----- PROTECTED REGION ID(EigerFilewriter.programmer_methods) ENABLED START -----#
     
@@ -167,11 +342,81 @@ class EigerFilewriterClass(PyTango.DeviceClass):
 
     #    Command definitions
     cmd_list = {
+        'Clear':
+            [[PyTango.DevVoid, "none"],
+            [PyTango.DevVoid, "none"]],
+        'InitializeFilewriter':
+            [[PyTango.DevVoid, "none"],
+            [PyTango.DevVoid, "none"]],
         }
 
 
     #    Attribute definitions
     attr_list = {
+        'Mode':
+            [[PyTango.DevString,
+            PyTango.SCALAR,
+            PyTango.READ_WRITE],
+            {
+                'description': "Operation mode, can be "enabled" or "disabled".",
+            } ],
+        'TransferMode':
+            [[PyTango.DevString,
+            PyTango.SCALAR,
+            PyTango.READ_WRITE],
+            {
+                'description': " Transfer mode. Currently only "http" is supported.",
+            } ],
+        'ImagesPerFile':
+            [[PyTango.DevLong,
+            PyTango.SCALAR,
+            PyTango.READ_WRITE],
+            {
+                'description': "Number of images stored in a single data file.",
+            } ],
+        'ImageNbStart':
+            [[PyTango.DevLong,
+            PyTango.SCALAR,
+            PyTango.READ_WRITE],
+            {
+                'description': "image_nr_low metadata parameter in the first HDF5 data file",
+            } ],
+        'FilenamePattern':
+            [[PyTango.DevString,
+            PyTango.SCALAR,
+            PyTango.READ_WRITE],
+            {
+                'description': "The file naming pattern. The string ``_$id`` is automatically added at\nthe end of the written string and $id is replaced by the series id.",
+            } ],
+        'CompressionEnabled':
+            [[PyTango.DevLong,
+            PyTango.SCALAR,
+            PyTango.READ_WRITE],
+            {
+                'description': "True if the LZ4 data compression is enabled, False otherwise.",
+            } ],
+        'FilewriterError':
+            [[PyTango.DevString,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'description': "list of status parameters causing error state.",
+            } ],
+        'FilewriterState':
+            [[PyTango.DevString,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'description': "The filewriter's status. The status can be one of "disabled",\n"ready", "acquire", and "error".",
+            } ],
+        'BufferFree':
+            [[PyTango.DevLong,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'unit': "kB",
+                'description': "Remaining buffer space in KB",
+            } ],
         }
 
 

@@ -5,7 +5,112 @@
 </head>
 <body text="Black" bgcolor="White" link="Blue" vlink="Purple" alink="Red">
 <br><br><br><br>
-<font size="+1"><u><b> There is no attribute defined. </b></u></font>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=8> <font size=+1> <center><b> EigerFilewriter Class Attributes </b></font></center></td>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+		<td> <center><b> Name </b></center> </td>
+		<td> <center><b> Inherited </b></center> </td>
+		<td> <center><b> Abstract </b></center> </td>
+		<td> <center><b> Attr. type </b></center> </td>
+		<td> <center><b> R/W type </b></center> </td>
+		<td> <center><b> Data type </b></center> </td>
+		<td> <center><b> Level </b></center> </td>
+		<td> <center><b> Description </b></center> </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrMode.html"> Mode </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ_WRITE </td>
+		<td> Tango::DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> Operation mode, can be &quot;enabled&quot; or &quot;disabled&quot;. </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrTransferMode.html"> TransferMode </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ_WRITE </td>
+		<td> Tango::DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td>  Transfer mode. Currently only &quot;http&quot; is supported. </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrImagesPerFile.html"> ImagesPerFile </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ_WRITE </td>
+		<td> Tango::DEV_LONG </td>
+		<td> OPERATOR </td>
+		<td> Number of images stored in a single data file. </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrImageNbStart.html"> ImageNbStart </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ_WRITE </td>
+		<td> Tango::DEV_LONG </td>
+		<td> OPERATOR </td>
+		<td> image_nr_low metadata parameter in the first HDF5 data file </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrFilenamePattern.html"> FilenamePattern </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ_WRITE </td>
+		<td> Tango::DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> The file naming pattern. The string ``_$id`` is automatically added at<Br>
+			the end of the written string and $id is replaced by the series id. </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrCompressionEnabled.html"> CompressionEnabled </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ_WRITE </td>
+		<td> Tango::DEV_LONG </td>
+		<td> OPERATOR </td>
+		<td> True if the LZ4 data compression is enabled, False otherwise. </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrFilewriterError.html"> FilewriterError </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ </td>
+		<td> Tango::DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> list of status parameters causing error state. </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrFilewriterState.html"> FilewriterState </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ </td>
+		<td> Tango::DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> The filewriter`s status. The status can be one of &quot;disabled&quot;,<Br>
+			&quot;ready&quot;, &quot;acquire&quot;, and &quot;error&quot;. </td>
+	</tr>
+	<tr>
+		<td> <a href="AttrBufferFree.html"> BufferFree </a> </td>
+		<td> false </td>
+		<td> false </td>
+		<td> Scalar </td>
+		<td> READ </td>
+		<td> Tango::DEV_LONG </td>
+		<td> OPERATOR </td>
+		<td> Remaining buffer space in KB </td>
+	</tr>
+</table>
 <br><br>
 <hr>
 <br><br>
