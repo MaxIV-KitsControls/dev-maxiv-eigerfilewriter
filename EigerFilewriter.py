@@ -298,6 +298,8 @@ class EigerFilewriter (PyTango.Device_4Impl):
         self.debug_stream("In Clear()")
         #----- PROTECTED REGION ID(EigerFilewriter.Clear) ENABLED START -----#
         
+        self.filewriter.clear()
+
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.Clear
         
     def InitializeFilewriter(self):
@@ -309,7 +311,9 @@ class EigerFilewriter (PyTango.Device_4Impl):
         :rtype: PyTango.DevVoid """
         self.debug_stream("In InitializeFilewriter()")
         #----- PROTECTED REGION ID(EigerFilewriter.InitializeFilewriter) ENABLED START -----#
-        
+
+        self.filewriter.initialize()
+
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.InitializeFilewriter
         
 
