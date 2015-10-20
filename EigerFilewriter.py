@@ -392,6 +392,7 @@ class EigerFilewriterClass(PyTango.DeviceClass):
             PyTango.SCALAR,
             PyTango.READ_WRITE],
             {
+                'min value': "1",
                 'description': "Number of images stored in a single data file.",
             } ],
         'ImageNbStart':
