@@ -56,9 +56,11 @@ from dectris_eiger.filewriter import EigerFileWriter
 #----- PROTECTED REGION END -----#	//	EigerFilewriter.additionnal_import
 
 ## Device States Description
-## ON : 
-## FAULT : 
-## MOVING : 
+## ON : ready
+## FAULT : error
+## MOVING : acquire
+## OFF : disabled
+## UNKNOWN : Not known
 
 class EigerFilewriter (PyTango.Device_4Impl):
 
@@ -288,6 +290,39 @@ class EigerFilewriter (PyTango.Device_4Impl):
     #    EigerFilewriter command methods
     #-----------------------------------------------------------------------------
     
+    def dev_state(self):
+        """ This command gets the device state (stored in its device_state data member) and returns it to the caller.
+        
+        :param : none
+        :type: PyTango.DevVoid
+        :return: Device state
+        :rtype: PyTango.CmdArgType.DevState """
+        self.debug_stream("In dev_state()")
+        argout = PyTango.DevState.UNKNOWN
+        #----- PROTECTED REGION ID(EigerFilewriter.State) ENABLED START -----#
+    
+        rstate = self.filewriter.get_status()
+
+        if rstate == "disabled":
+            self.set_state(PyTango.DevState.OFF) 
+        elif rstate == "ready":
+            self.set_state(PyTango.DevState.ON)
+        elif rstate == "acquire":
+            self.set_state(PyTango.DevState.MOVING)
+        elif rstate =="error":
+            self.set_state(PyTango.DevState.FAULT)
+        else:
+            self.set_state(PyTango.DevState.UNKNOWN)
+            
+            
+
+        self.set_status(str(rstate))
+
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.State
+        if argout != PyTango.DevState.ALARM:
+            PyTango.Device_4Impl.dev_state(self)
+        return self.get_state()
+        
     def Clear(self):
         """ Drops all data (image data and directories) on the DCU.
         
