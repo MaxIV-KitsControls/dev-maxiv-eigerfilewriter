@@ -331,7 +331,7 @@ class EigerFilewriter (PyTango.Device_4Impl):
         argout = ''
         #----- PROTECTED REGION ID(EigerFilewriter.Status) ENABLED START -----#
         
-        argout = str(self.filewriter.get_status())
+        self.argout = str(self.filewriter.get_status())
 
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.Status
         self.set_status(self.argout)
