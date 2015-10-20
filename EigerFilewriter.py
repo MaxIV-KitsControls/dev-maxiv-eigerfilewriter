@@ -209,7 +209,7 @@ class EigerFilewriter (PyTango.Device_4Impl):
         self.debug_stream("In read_FilenamePattern()")
         #----- PROTECTED REGION ID(EigerFilewriter.FilenamePattern_read) ENABLED START -----#
         pattern = self.filewriter.filename_pattern
-        self.attr_FilenamePattern_read = pattern.replace("_$id","")
+        self.attr_FilenamePattern_read = pattern
 
         attr.set_value(self.attr_FilenamePattern_read)
         
@@ -220,7 +220,7 @@ class EigerFilewriter (PyTango.Device_4Impl):
         data=attr.get_write_value()
         #----- PROTECTED REGION ID(EigerFilewriter.FilenamePattern_write) ENABLED START -----#
                
-        data = data + "_$id"
+        data = data
         self.filewriter.filename_pattern = data
 
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.FilenamePattern_write
@@ -457,7 +457,7 @@ class EigerFilewriterClass(PyTango.DeviceClass):
             PyTango.SCALAR,
             PyTango.READ_WRITE],
             {
-                'description': "The file naming pattern. The string ``_$id`` is automatically added at\nthe end of the written string and $id is replaced by the series id.",
+                'description': "The file naming pattern.",
             } ],
         'CompressionEnabled':
             [[PyTango.DevLong,
