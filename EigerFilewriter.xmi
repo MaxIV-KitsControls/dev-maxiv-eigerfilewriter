@@ -25,7 +25,7 @@
       <argout description="Device status">
         <type xsi:type="pogoDsl:ConstStringType"/>
       </argout>
-      <status abstract="true" inherited="true" concrete="true"/>
+      <status abstract="true" inherited="true" concrete="true" concreteHere="true"/>
     </commands>
     <commands name="Clear" description="Drops all data (image data and directories) on the DCU." execMethod="clear" displayLevel="OPERATOR" polledPeriod="0">
       <argin description="">

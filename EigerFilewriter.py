@@ -313,15 +313,30 @@ class EigerFilewriter (PyTango.Device_4Impl):
             self.set_state(PyTango.DevState.FAULT)
         else:
             self.set_state(PyTango.DevState.UNKNOWN)
-            
-            
-
-        self.set_status(str(rstate))
+ 
 
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.State
         if argout != PyTango.DevState.ALARM:
             PyTango.Device_4Impl.dev_state(self)
         return self.get_state()
+        
+    def dev_status(self):
+        """ This command gets the device status (stored in its device_status data member) and returns it to the caller.
+        
+        :param : none
+        :type: PyTango.DevVoid
+        :return: Device status
+        :rtype: PyTango.ConstDevString """
+        self.debug_stream("In dev_status()")
+        argout = ''
+        #----- PROTECTED REGION ID(EigerFilewriter.Status) ENABLED START -----#
+        
+        argout = str(self.filewriter.get_status())
+
+        #----- PROTECTED REGION END -----#	//	EigerFilewriter.Status
+        self.set_status(self.argout)
+        self.__status = PyTango.Device_4Impl.dev_status(self)
+        return self.__status
         
     def Clear(self):
         """ Drops all data (image data and directories) on the DCU.
