@@ -230,6 +230,9 @@ class EigerFilewriter (PyTango.Device_4Impl):
         #----- PROTECTED REGION ID(EigerFilewriter.CompressionEnabled_read) ENABLED START -----#
         if self.filewriter.compression_enabled == True:
             self.attr_CompressionEnabled_read = 1
+        else:
+            self.attr_CompressionEnabled_read = 0
+            
         attr.set_value(self.attr_CompressionEnabled_read)
         
         #----- PROTECTED REGION END -----#	//	EigerFilewriter.CompressionEnabled_read
