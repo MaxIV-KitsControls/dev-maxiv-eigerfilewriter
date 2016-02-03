@@ -40,6 +40,8 @@ install:
 clean:
 	@echo "Nothing to do"
 
+
+include $(MAKE_ENV)/tango.opt 
 include $(MAKE_ENV)/common_target.opt
 
 #----------------------------------------------------
